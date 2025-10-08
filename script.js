@@ -247,11 +247,29 @@ if (bookAppointmentBtn) {
 }
 
 // Emergency Sidebar Click Handler
-const emergencySidebar = document.querySelector('.emergency-text');
+const emergencySidebar = document.querySelector('.emergency-sidebar');
+let emergencyExpanded = false;
 
 if (emergencySidebar) {
     emergencySidebar.addEventListener('click', () => {
-        alert('Emergency Contact: +91 926 888 0303\n\nAvailable 24/7');
+        if (!emergencyExpanded) {
+            emergencySidebar.style.width = '250px';
+            emergencySidebar.style.padding = '20px';
+            emergencySidebar.innerHTML = `
+                <div style="color: white; font-size: 14px;">
+                    <h3 style="margin-bottom: 10px; font-size: 18px;">EMERGENCY</h3>
+                    <p style="margin-bottom: 10px;">Available 24/7</p>
+                    <p style="font-weight: bold; font-size: 16px;">+91 926 888 0303</p>
+                    <p style="margin-top: 15px; font-size: 12px;">Click again to close</p>
+                </div>
+            `;
+            emergencyExpanded = true;
+        } else {
+            emergencySidebar.style.width = '';
+            emergencySidebar.style.padding = '';
+            emergencySidebar.innerHTML = '<div class="emergency-text">EMERGENCY</div>';
+            emergencyExpanded = false;
+        }
     });
 }
 
